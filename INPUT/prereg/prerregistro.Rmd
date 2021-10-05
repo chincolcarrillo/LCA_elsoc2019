@@ -1,71 +1,107 @@
 ---
-title           : "My preregistration for AsPredicted.org"
+title           : "Patrones Actitudinales ante la Protesta en Chile 2019-2020"
 shorttitle      : "Pre-registro según plantilla AsPredicted.org"
-date            : "`r Sys.setlocale('LC_TIME', 'C'); format(Sys.time(), '%d\\\\. %B %Y')`"
+date            : "`r format(Sys.time(), '%d/%m/%Y')`"
 
 author: 
-  - name        : First Author
+  - name        : Carolina Carrillo Devia
     affiliation : 1
-  - name        : Ernst-August Doelle
-    affiliation : "1,2"
+  - name        : Moira Martínez Sembler
+    affiliation : "1"
+  - name        : Enzo Zurita
+    affiliation : "1"
 
 affiliation:
   - id          : 1
-    institution : Wilhelm-Wundt-University
-  - id          : 2
-    institution : Konstanz Business School
+    institution : Departamento de Sociología, Universidad de Chile
 
 output: prereg::aspredicted_prereg
+bibliography: '../INPUT/bib/prereg.bib'
+csl: '../INPUT/bib/apa.csl'
+nocite: '@*'
 ---
 
-<!-- To keep pre-registrations to a reasonable length for readers, we recommend answers fit within a single page .pdf document, roughly 3200 characters. Read more about this here: https://aspredicted.org/messages/why_limits.php -->
-
+```{r include = FALSE} 
+#install.packages("prereg")
+#library(prereg)
+```
 
 ## ¿Se han recopilado ya datos para este estudio?
 
-**Sí**, los datos
+**Sí**, los datos provienen de la ola de encuestas 2019 del Estudio Longitudinal Social de Chile (_ELSOC_), levantados por el Centro de Estudios de Conflicto y Cohesión Social (_COES_). El objetivo de la ELSOC es medir las percepciones de los chilenos en torno a un conjunto de temas referidos al conflicto y la cohesión social en Chile. Su población objetivo son hombres y mujeres de 18 a 75 años, residentes habituales de viviendas particulares en zonas urbanas, localizadas en 40 ciudades del país (COES, 2020). Contempla un diseño muestral probabilístico, estratificado y multietapa, con bloques censales como unidades primarias de muestreo, viviendas como unidades secundarias y personas particulares como unidad terciaria (ibíd.)
 
 
 ## ¿Cuál es la pregunta principal o la hipótesis que se está probando en este estudio?
 
-Example: A month-long academic summer program for disadvantaged kids will reduce the drop in academic performance that occurs during the summer.
+El alcance del presente estudio es exploratorio y descriptivo, por lo que no se formulan hipótesis. En esta línea, el presente estudio contempla tres objetivos principales:
+
+**1.** Identificar patrones actitudinales hacia la protesta y acción política contenciosa en Chile entre el 21 de noviembre y el 09 de marzo de 2020.
+
+**2.** Examinar si los patrones actitudinales identificados se relacionan con el sexo o edad de los sujetos.
+
+**3.** Estimar la influencia del nivel educacional e ingresos del hogar en la predicción de distintos patrones de actitud.
 
 
 ## Describa la(s) variable(s) clave(s) especificando cómo se medirán.
 
-Example: Simple average GPA across all courses during the first semester after the intervention.
+Para determinar las clases latentes se usarán nueve ítems del _Módulo de Conflicto_ de la Encuesta Longitudinal Social de Chile. Este módulo se compone por cinco variables, de las cuales serán utilizadas como base para la determinación de las clases latentes:
+
+**a. _Violencia y conflictividad_:** La variable contiene 11 ítems que cuantifican distintas actitudes frente al uso de la violencia en contextos de protesta, detenciones ciudadanas o relaciones interpersonales. Serán utilizados los ítems relativos a las protestas, considerando dos respecto a la legitimación de la fuerza de Carabineros para reprimir manifestaciones y tomas de establecimientos educacionales y cinco a la tolerancia a las estrategias contenciosas de protesta.
+
+**b. _Disposición a la acción política contenciosa_:** Variable compuesta por dos ítems relativos a la disposición de participar en acciones drásticas de protesta, bajo el supuesto de una situación crítica o ausencia de alternativas viables, respectivamente.
+
+Todos los ítems señalados cuentan con 5 alternativas válidas de respuesta, formuladas en escalas de cinco categorías que van desde el _Nunca se justifica_ (1) al _Siempre se justifica_ (5) y _Totalmente en desacuerdo_ (1) a _Totalmente de acuerdo_ (5).
+
+El análisis exploratorio también contempla el análisis de cuatro predictores:
+
+**1. _Nivel educacional_:** Variable ordinal de diez niveles de respuesta, que van desde la ausencia de estudios (1) hasta la posesión de estudios de posgrado (10).
+
+**2. _Ingresos hogar_:** Rangos de ingreso líquido del hogar que cuenta con 16 categorías de respuesta.
+
+**3. _Sexo_:** Variable dicotómica que determina el sexo del entrevistado.
+
+**4. _Edad_:** Variable numérica contínua calculada a partir de la fecha de nacimiento del encuestado.
 
 
-## ¿Cuántas y qué condiciones se les asignará a los participantes?
+## Condiciones
 
-Example 2: 12 conditions in a mixed design lab study. Participants will be assigned to one of four conditions: math training, verbal training, memory task, or control (4 between-subject conditions). Each participant will complete a math test, a verbal test, and a memory test (3 within-subject conditions).
+Este es un análisis de datos secundarios, los participantes no son expuestos a ningún tipo de condiciones por parte de los investigadores.
+
 
 
 ## Especifique exactamente qué análisis se realizará para examinar la pregunta o hipótesis principal
-Example: Linear regression predicting the simple average GPA in the semester after the intervention with a dummy variable indicating whether the participant was offered the summer program or not (intention-to-treat analysis). We will also conduct the same regression controlling for simple average GPA during the semester before the intervention, gender, & household income (an 8-point scale ranging from 1 = below $20,000 and 8 = above $150,000).
+
+Se utilizará R 4.0.5. para todo el análisis, para el análisis de clases latentes se utilizará poLCA en su versión 1.4.1. (Linzer y Lewis, 2011). Debido al muestreo complejo de la encuesta ELSOC, los modelos incluirán ponderadores de ajuste por población y sexo (COES, 2020).
+Para identificar las clases latentes de actitudes respecto a la protesta y acción política contenciosa (**Objetivo 1**), se estimará un modelo de una clase y se añadirán progresivamente clases al modelo, hasta identificar aquel con el mejor ajuste posible. Se examinará el ajuste del modelo según criterios sustanciales derivados de la teoría existente, del tamaño de las clases (Collins y Lanza, 2010) y los siguientes estadísticos: (i) Criterio de información bayesiano (_BIC_); y (ii) Criterio de información de Akaike (_AIC_).
+Tras la selección del modelo final, se examinarán distintos criterios estadísticos para evaluar el modelo. En primer lugar, se examinará la entropía, esperando obtener una estimación sobre 0.8, si bien no existe un criterio convencional de corte (Weller et al., 2020). En segundo lugar, se aplicará la prueba de bondad de ajuste de la razón de verosimilitud Chi-cuadrado y Chi-cuadrado de Pearson (Masyn, 2013).
+Finalmente, se revisarán los diagnósticos de clasificación, por lo que se estimará la probabilidad posterior de pertenencia (Weller et al., 2020).
+Siguiendo la propuesta de análisis de tres etapas (Asparouhov y Muthén, 2020), se analiza el efecto de cuatro predictores en el modelo final (**Objetivo 2** y **Objetivo 3**).
+En esta segunda etapa de análisis, considerando los casos perdidos de los predictores analizados, se modifica el tamaño de la muestra. Para estos modelos solamente, se eliminarán los casos correspondientes.
 
 
 ## Describa exactamente cómo se definirán y tratarán los valores atípicos, y su(s) regla(s) precisa(s) para excluir las observaciones
 
-Example 1: We will compute the overall mean and standard deviation across all conditions, and winsorize at 2.5 SD above/below the mean.
-Example 2: We will exclude participants who incorrectly answer at least 2 of our 3 attention check questions.
-Example 3: We will exclude any participants who complete the survey in less than 30 seconds.
+Se considera la exclusión de aquellos casos con inconsistencias mayores en sus respuestas entre las distintas olas de encuesta (COES, 2020), correspondiendo a un total de 27 casos.
+No tenemos previsto excluir observaciones válidas de los datos en el caso de que estas se alejen de la media de la variable en cuestión. El análisis de clases latentes supone fundamentalmente que los individuos que componen la muestra provienen de poblaciones diferentes y no observadas (Bolck, et al., 2004), por lo que la agrupación de múltiples respuestas alejadas de las medias de la muestra puede, en última instancia, identificarse como un perfil distinto y válido de los individuos.
 
 
-## ¿Cuántas observaciones se recopilarán o qué determinará el tamaño de la muestra?
+## ¿Qué determinará el tamaño de la muestra?
 
-> Example: We will offer the program until 500 people have agreed to participate in it or until June 30, 2016 (whichever comes first).
+Los datos para este estudio ya fueron recolectados. 
+
+La muestra se compone de 3390 casos, correspondiente al total de personas que contestaron la ELSOC en su cuarta ola y no tienen inconsistencias mayores con respecto a sus respuestas en olas anteriores.
 
 
-## ¿Algo más que le gustaría agregar? (por ejemplo, exclusiones de datos, variables recopiladas con fines exploratorios, análisis inusuales previstos)
 
-Example: We will include a battery of questions for exploratory purposes, including life satisfaction, amount of videogame playing, and family activity. We will also provide an additional survey with 24 questions assessing achievement orientation. We will not report the results of those analyses for the project being pre-registered.
+## ¿Algo más que le gustaría agregar?
 
-> NOTE: If you leave this blank it will read 'Nothing else to pre-register.'
+Nada más que registrar.  
+
+
 
 ## Tipo de estudio
 
-* Estudio de encuestas
+Estudio de encuestas
 
 
 ## Referencias

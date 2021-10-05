@@ -1,0 +1,41 @@
+---
+title:  |
+  ![](../INPUT/images/logo_facso.png){width=2.5in}  
+  Patrones Actitudinales ante la Protesta en Chile tras el Estallido Social de Octubre 2019   
+author: | 
+ | Carolina Carrillo Devia, Moira Martínez Sembler, Enzo Zurita
+date: "`r format(Sys.time(), '%d/%m/%Y')`"
+output: html_document
+css: '../INPUT/css_georgia.css'
+csl: '../INPUT/bib/apa.csl'
+bibliography: '../INPUT/bib/LCA_ELSOC19.bib'
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Resumen
+This is an R Markdown document. Según @pleyers_movimientos_2018
+
+# 1. Introducción
+Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. Asimismo plantea [@pleyers_movimientos_2018]
+
+# 2. Antecedentes
+When you click the **Knit** button a 
+
+# 3. Metodología
+Entonces
+
+# 4. Análisis
+
+Corresponde
+
+# 5. Discusión
+
+De todas maneras
+
+
+# Referencias {-}
+
+
